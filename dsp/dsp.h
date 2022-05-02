@@ -143,6 +143,18 @@ inline float SoftClip(float x) {
     return result;
   }
 #endif
+
+  inline int32_t Clip24(int32_t x) {
+    int32_t result;
+    __asm ("ssat %0, %1, %2" : "=r" (result) :  "I" (24), "r" (x) );
+    return result;
+  }
+  inline uint32_t ClipU24(int32_t x) {
+    uint32_t result;
+    __asm ("usat %0, %1, %2" : "=r" (result) :  "I" (24), "r" (x) );
+    return result;
+  }
+
   
 #ifdef TEST
   inline float Sqrt(float x) {
